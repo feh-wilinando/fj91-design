@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout"
+>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Sessões</title>
+</head>
+<body>
+<section layout:fragment="content">
+
+    <a th:href="@{/admin/salas/{id}/sessoes/new(id=${sala.id})}">Cadastrar</a>
+
+    <div class="column">
+        Sala: <strong th:text="${sala.nome}">Eldorado 3D</strong>
+    </div>
+    <table class="table is-hoverable is-fullwidth">
+        <thead>
+            <th>Inicio</th>
+            <th>Fim</th>
+            <th>Filme</th>
+            <th>Preço</th>
+            <th>Ações</th>
+        </thead>
+        <tbody>
+            <tr th:each="sessao : ${sala.sessoes}">
+                <td th:text="${sessao.horario}">17:30</td>
+                <td th:text="${sessao.termino}">19:30</td>
+                <td th:text="${sessao.filme.nome}">Wolverine</td>
+                <td th:text="${sessao.preco}">30,0</td>
+                <td>
+                    <button type="button" class="button is-danger is-outlined" th:onclick="'remove('+${sala.id}+','+${sessao.id}+')'">
+                        <span class="icon is-small">
+                            <i class="fa fa-trash-o"></i>
+                        </span>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        function remove(salaId, sessaoId){
+
+            let redirectUrl = window.location.href;
+
+            let request = {
+                method: 'DELETE'
+            };
+
+            let url = `http://localhost:8080/admin/salas/${salaId}/sessoes/${sessaoId}`;
+
+            console.log(url);
+
+            fetch(url, request)
+                .then(function(response){
+                    window.location.href = redirectUrl;
+                })
+
+        }
+    </script>
+</section>
+</body>
+</html>

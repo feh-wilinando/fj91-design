@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta charset="UTF-8"/>
+    <title layout:title-pattern="- $CONTENT_TITLE"></title>
+    <link rel="stylesheet" href="/webjars/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/webjars/bulma/0.6.0/css/bulma.css"/>
+</head>
+<body>
+
+<main class="container is-fluid is-centered">
+    <header  th:include="/fragments/header :: header">Header</header>
+    <section class="column is-half is-offset-one-quarter" layout:fragment="content">Content</section>
+    <footer class="footer" th:include="/fragments/footer :: footer">Footer</footer>
+</main>
+
+</body>
+</html>

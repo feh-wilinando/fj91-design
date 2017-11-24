@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Cadastro de Filme</title>
+</head>
+<body>
+<section layout:fragment="content">
+
+    <div style="display: flex; justify-content: space-between; flex-wrap: wrap-reverse" th:each="filme:${filmes}">
+        <div class="card">
+            <header class="card-header">
+                <p class="card-header-title">
+                    <span>Eldorado 3D</span>
+                </p>
+            </header>
+            <div class="card-content">
+                <div class="content">
+                    <div>
+                        <span class="title is-4">Wolverine</span>
+                    </div>
+                    <div>
+                        <span>Duração</span>
+                        <span class="title is-6">120 minutos</span>
+                    </div>
+                    <div>
+                        <div>
+                            <span>Inicio</span>
+                            <span class="title is-6">18:30</span>
+                        </div>
+                        <div>
+                            <span>Fim</span>
+                            <span class="title is-6">20:30</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+</body>
+</html>

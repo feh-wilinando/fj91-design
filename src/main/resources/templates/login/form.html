@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout"
+>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Login</title>
+</head>
+<body>
+<section layout:fragment="content">
+
+    <form action="login" method="post" id="myForm" name="myForm">
+
+
+        <div class="field">
+            <label class="label" for="username">Usuário</label>
+            <div class="control">
+                <input class="input" type="text" id="username" name="username" placeholder="Seu usuário"/>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label" for="password">Senha</label>
+            <div class="control">
+                <input class="input" type="password" id="password" name="password" placeholder="Sua senha"/>
+            </div>
+        </div>
+
+        <div class="buttons">
+
+            <div style="display: flex; justify-content: flex-end; width: 100%">
+
+            <button type="button" class="button is-primary is-outlined" data-provider="EMAIL">
+                    <span class="icon is-small">
+                    <i class="fa fa-sign-in"></i>
+                    </span>
+                <span>Entrar</span>
+            </button>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; width: 100%">
+                <hr style="display:inline-block;width: 45%"/>
+                <span style="position: relative; top:10px;">ou</span>
+                <hr style="display:inline-block;width: 45%"/>
+            </div>
+
+            <div style="display: flex; justify-content: space-between">
+
+                <button type="button" class="button is-link is-outlined" data-provider="FACEBOOK">
+                <span class="icon is-small">
+                <i class="fa fa-facebook"></i>
+                </span>
+                    <span>Logar com Facebook</span>
+                </button>
+                <button type="button" class="button is-info is-outlined" data-provider="TWITTER">
+                    <span class="icon is-small">
+                    <i class="fa fa-twitter"></i>
+                    </span>
+                    <span>Logar com Twitter</span>
+                </button>
+                <button type="button" class="button is-danger is-outlined" data-provider="GPLUS">
+                    <span class="icon is-small">
+                    <i class="fa fa-google-plus"></i>
+                    </span>
+                    <span>Logar com Google+</span>
+                </button>
+
+                <!--<button type="button" class="button is-outlined" data-provider="GITHUB">-->
+                    <!--<span class="icon is-small">-->
+                    <!--<i class="fa fa-github"></i>-->
+                    <!--</span>-->
+                    <!--<span>Logar com Github</span>-->
+                <!--</button>-->
+            </div>
+        </div>
+
+    </form>
+    <script>
+
+        var buttons = document.querySelectorAll('.buttons>.button');
+
+        buttons.forEach(function (button) {
+            button.addEventListener('click', function (event) {
+                var provedorValue = button.getAttribute('data-provider');
+
+                var form = document.getElementById('myForm');
+
+                var provedor = document.createElement('input');
+
+                provedor.setAttribute('name', 'provedor');
+                provedor.setAttribute('type', 'hidden');
+                provedor.setAttribute('value', provedorValue);
+
+                form.appendChild(provedor);
+
+                form.submit();
+            })
+        })
+
+    </script>
+</section>
+</body>
+</html>

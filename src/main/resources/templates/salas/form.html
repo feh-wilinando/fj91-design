@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Cadastro de Salas</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <form action="#" method="post" th:action="@{/admin/salas}" th:object="${sala}">
+
+        <input type="hidden" th:field="*{id}"/>
+
+        <div class="field">
+            <label class="label" for="nome">Nome</label>
+            <div class="control">
+                <input type="text" th:field="*{nome}" class="input" id="nome" placeholder="Eldorado 3D"/>
+            </div>
+        </div>
+
+        <div class="control">
+            <label class="label" for="preco">Preço</label>
+        </div>
+        <div class="field has-addons">
+            <p class="control">
+                <a class="button is-static">
+                    R$
+                </a>
+            </p>
+            <div class="control is-expanded">
+                <input class="input" type="text" id="preco" th:field="*{preco}" placeholder="15,00"/>
+            </div>
+        </div>
+
+        <button class="button is-primary is-outlined" type="submit">
+            <span class="icon is-small">
+              <i class="fa fa-check"></i>
+            </span>
+            <span>Salvar</span>
+        </button>
+    </form>
+</section>
+</body>
+</html>

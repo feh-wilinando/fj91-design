@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Salas</title>
+</head>
+<body>
+<section layout:fragment="content">
+
+    <a href="/admin/salas/new">Cadastrar</a>
+    <table class="table is-hoverable is-fullwidth">
+        <thead>
+        <th>Nome</th>
+        <th>Preço</th>
+        <th>Açõe</th>
+        </thead>
+        <tbody>
+        <tr th:each="sala : ${salas}">
+            <td th:text="${sala.nome}"></td>
+            <td th:text="${'R$ ' + sala.preco}"></td>
+            <td>
+                <div style="display: flex; justify-content: space-around">
+
+                    <a th:href="@{/admin/salas/{id}/sessoes(id=${sala.id})}" class="button is-primary is-outlined">
+                        <span class="icon is-small">
+                            <i class="fa fa-trash-o"></i>
+                        </span>
+                        <span>Sessões</span>
+                    </a>
+
+
+                    <a th:href="@{/admin/salas/{id}(id=${sala.id})}" class="button is-link is-outlined">
+                        <span class="icon is-small">
+                            <i class="fa fa-pencil-square-o"></i>
+                        </span>
+                    </a>
+
+
+                    <button type="button" class="button is-danger is-outlined" th:onclick="'remove('+${sala.id}+')'">
+                        <span class="icon is-small">
+                            <i class="fa fa-trash-o"></i>
+                        </span>
+                    </button>
+
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <script>
+        function remove(id){
+
+            let redirectUrl = window.location.href;
+
+            let request = {
+                method: 'DELETE'
+            };
+
+            let url = `http://localhost:8080/admin/salas/${id}`
+
+            console.log(url);
+
+            fetch(url, request)
+            .then(function(response){
+                window.location.href = redirectUrl;
+            })
+
+        }
+    </script>
+</section>
+</body>
+</html>

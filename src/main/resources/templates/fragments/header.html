@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+    <header th:fragment="header">
+        <nav class="navbar">
+            <div class="navbar-item has-dropdown is-hoverable">
+                <span class="navbar-link">Admin</span>
+
+                <div class="navbar-dropdown">
+                    <a class="navbar-item" href="/admin/salas">Salas</a>
+                    <a class="navbar-item" href="/admin/filmes">Filmes</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+</body>
+</html>

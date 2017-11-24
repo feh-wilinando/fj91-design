@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Cadastro de Salas</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <form class="column is-one-third" th:action="@{/admin/salas/{id}/sessoes(id=${id})}" th:object="${form}" method="post">
+
+        <div class="field">
+            <label for="horario" class="label">Horário</label>
+            <input id="horario" type="text" class="input" th:field="*{horario}" placeholder="18:30"/>
+        </div>
+
+        <div class="field">
+            <label for="filmeId" class="label">Filme</label>
+        </div>
+        <div class="field">
+            <div class="select">
+            <select style="padding-right: 9.5em" th:field="*{filmeId}" id="filmeId">
+                <option th:each="filme : ${filmes}" th:text="${filme.nome}" th:value="${filme.id}">Wolverine</option>
+            </select>
+            </div>
+        </div>
+
+        <button class="button is-primary is-outlined" type="submit">
+            <span class="icon is-small">
+              <i class="fa fa-check"></i>
+            </span>
+            <span>Salvar</span>
+        </button>
+
+    </form>
+</section>
+</body>
+</html>
